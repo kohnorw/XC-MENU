@@ -1,0 +1,21 @@
+services:
+  dispatcharr-usermgr:
+    build: .
+    container_name: dispatcharr-usermgr
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/data
+    environment:
+      # ── Upstream Dispatcharr XC credentials (REQUIRED) ──
+      UPSTREAM_URL: "http://192.168.1.100:9191"   # Your Dispatcharr URL
+      UPSTREAM_USERNAME: "your_xc_username"        # XC username from Dispatcharr Users tab
+      UPSTREAM_PASSWORD: "your_xc_password"        # XC password from Dispatcharr Users tab
+
+      # ── Admin web UI credentials ──
+      ADMIN_USER: "admin"
+      ADMIN_PASS: "changeme"
+
+      # ── Optional ──
+      PORT: "3000"
